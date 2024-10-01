@@ -1,15 +1,17 @@
-
 /* AuctionClosed is always reached */
 
 reachability auction_closed(2) {   // The number "2" indicates the length of rank tuple
 
   goal = {
      @AuctionClosed true
+
      /* all other entries are false by default */
   }
   
   invariant =  {
-    /* Invariants needed for the ranking proof */
+    /* Invariants needed for the ranking proof, if any. 
+     * Same syntax as for invariance proofs
+     */
      
      @StartAuction   Timer.is_off(tmr)   
      @AuctionOpen   !Timer.is_off(tmr)
@@ -30,4 +32,9 @@ reachability auction_closed(2) {   // The number "2" indicates the length of ran
         @AuctionClosed
 	    | (0 ,0)
    }
+
+  skolem = {
+       @StartAuction a==owner && a != Address.none
+       @AuctionOpen  a != beneficiary && a != Address.none && Coin.value(c) > Coin.value(maxBid)
+  }
 }
