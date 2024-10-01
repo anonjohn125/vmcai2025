@@ -30,3 +30,6 @@ Most of the examples in Asp are modeled on existing examples in other languages.
     
 #### Vending Machine
   * Demonstrates the state machine structure of Asp contracts with a simple vending machine contract
+
+## Asp implementation
+The Asp compilers and encoding of Asp abstract types are implemented in about 3000 lines of OCaml and 100 lines of Viper. Implementations will be made open-source pending organizational approvals.
